@@ -1,6 +1,6 @@
 ;;; packages.el --- Ansible Layer packages File for Spacemacs
 ;;
-;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
+;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
 ;; Author: Brian Hicks <brian@brianthicks.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
@@ -12,13 +12,14 @@
       '(ansible
         ansible-doc
         company
-        (company-ansible :toggle (configuration-layer/package-usedp 'company))
+        (company-ansible :requires company)
         jinja2-mode
         yaml-mode))
 
 (defun ansible/init-ansible ()
   (use-package ansible
     :defer t
+    :commands ansible::auto-decrypt-encrypt
     :init
     (progn
       (add-hook 'yaml-mode-hook 'spacemacs/ansible-maybe-enable)
